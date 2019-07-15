@@ -1,0 +1,134 @@
+/*html, body, ul, ol, li, p,
+h1, h2, h3, h4, h5, h6,
+form, fieldset, a, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+*/
+
+/* Выделение текста */
+::selection 
+{ 
+color: #000000; 
+background-color: #7df9ff; 
+} 
+ 
+::-moz-selection  /* Firefox требует дополнительного внимания */
+{ 
+color: #000000; 
+background-color: #7df9ff; 
+}
+
+/*-------------------------*/
+
+#indexBody { 
+font-family: 'Courer', serif;
+font-size: 12pt;
+background-image: url('../img/bgimage.bmp');
+background-repeat: repeat;
+background-color: #000000;
+color: #c0c0c0;
+}
+
+#contentPage {
+text-align: justify;
+font-family: 'Courer', serif;
+font-size: 12pt;
+background-image: url('../img/bgimage.bmp');
+background-repeat: repeat;
+background-color: #000000;
+color: #7df9ff;
+
+scrollbar-face-color: #d5d5d5;
+scrollbar-highlight-color: #808080;
+scrollbar-shadow-color: #808080;
+scrollbar-3dlight-color:808080;
+scrollbar-arrow-color: #000000;
+scrollbar-track-color: #808080;
+scrollbar-darkshadow-color: #000000;
+}
+a:visited {
+color: #7df9ff;
+text-decoration:none
+}
+
+a:link {
+color: #7df9ff;
+text-decoration:none
+}
+
+a:hover {
+color: #000000;
+background-color: #00cccc;
+text-decoration:none
+}
+
+.mainTable{
+	/*border-style: double;
+	border-width: 1px 1px 1px 1px;*/
+	height: 99%;
+	width: 99%;
+	background-image: url('data/img/b.bmp');
+	background-repeat: repeat-x;
+}
+
+.trSeparator {
+height: 1%;
+}
+
+.tdSeparator {
+width: 1%;
+}
+
+#tdLeftTitle {
+	text-align: center;
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 10%;
+}
+#tdRightMenu{
+	text-align: center;
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 10%;
+}
+
+
+
+#tdHelpNav {
+	text-align: center;
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 80%;
+	width: 19%;
+}
+
+#tdContent {
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 80%;
+	width: 50%;
+}
+
+#tdLeftFeet {
+	text-align: center;
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 10%;
+}
+
+
+#tdRightFeet {
+	text-align: center;
+	border-style: double;
+	border-width: 2px 5px 2px 5px;
+	height: 10%;
+}
+
+#iframeContent {
+}
+
+#pCyan {
+color: #ffffff;
+}

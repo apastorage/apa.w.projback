@@ -1,0 +1,61 @@
+#contentPage-body {
+text-align: justify;
+font-family: 'Orbitron', courer, arial, serif;
+font-size: 12pt;
+background-image: url('../img/bgimgmn.bmp');
+background-repeat: repeat;
+background-color: #000000;
+color: #afeeee;
+
+scrollbar-face-color: #afeeee;
+scrollbar-highlight-color: #808080;
+scrollbar-shadow-color: #808080;
+scrollbar-3dlight-color:808080;
+scrollbar-arrow-color: #000000;
+scrollbar-track-color: #505050;
+scrollbar-darkshadow-color: #000000;
+}
+
+/* ---Links Design--- */
+
+a:visited {
+color: #d5d5d5;
+
+}
+
+a:link {
+color: #d5d5d5;
+
+}
+
+a:hover {
+color: #000000;
+background-color: #00cccc;
+text-decoration:none
+}
+
+/* ---End links Design--- */
+
+/* ---Select text color--- */
+::selection 
+{ 
+color: #000000; 
+background-color: #7df9ff; 
+} 
+ 
+::-moz-selection  /*For Firefox */
+{ 
+color: #000000; 
+background-color: #7df9ff; 
+}
+
+/*-------End select text color------*/
+
+#mainTable {
+	/*border-style: double;
+	border-width: 1px 1px 1px 1px;*/
+	height: 100%;
+	width: 100%;
+	background-image: url('../img/bgimgmn.bmp');
+	background-repeat: repeat-x;
+}

@@ -1,0 +1,105 @@
+<!--Password//-->
+<HTML>
+<head>
+<TITLE>Restricted Area</title>
+<meta http-equiv="expires" content="-1">
+<meta http-equiv="pragma" content="no-cache">
+<Script>
+<!--
+var checkpass=''
+tell=0
+counttimes=0
+disComp=0
+function preferences(encryptpass,encryptdepth,what,dis){
+  disComp=dis
+  tell=0
+  tell=what
+  checkpass=''
+  counttimes=0
+  times=encryptdepth
+  checkpass=encryptpass
+  orig=''
+  this.check=mkasci
+}
+bases=new Array(17,33,57,101);
+var acharset='23CDWEFGlmwtuvg01xXYZNOhijkVWHIJ45ncdefMyzopqPQRSTUABKL6789abrs'
+var storeup='';
+function mkasci(orig){
+  if(counttimes==0){storeup=orig}
+  ascival=new Array()
+  for(i=0;i<=orig.length-1;i++){
+for(i1=0;i1<=acharset.length;i1++){
+if(orig.charAt(i)==acharset.charAt(i1)){ascival[i]=i1}
+}
+}
+themeat(ascival)
+}
+function cutoff(code){
+ eval("var whatcode='"+code+"'");
+ eval("var whatcode2='"+Math.ceil(code)+"'");
+ bigVal=(Math.pow(10,whatcode.length-(whatcode2.length)-2)<1)?1:Math.pow(10,whatcode.length-(whatcode2.length)-2);
+ whatcode3=Math.round(code*bigVal)/bigVal
+ return(whatcode3)
+}
+function themeat(basecode){
+  if(basecode.length>=4){
+  counttimes++
+  if(disComp==1){window.status="Computating encryption level "+counttimes+"/"+times}
+newcode=0
+finalcode=1
+for(count=0;count!=basecode.length;count++){
+newcode=(basecode[(count<(basecode.length-1))?count+1:count-2]+(basecode[count]*bases[2])*(2.303)+basecode[Math.round(((basecode.length-1)*((Math.atan(basecode[(count!=0)?count-1:count+1])*basecode.length)+2*bases[0]))/100)]+1)
+newcode=cutoff(newcode)
+newcode=(newcode>basecode[Math.round(basecode.length/2)])?newcode-=bases[3]:newcode+=bases[3]
+finalcode=cutoff(((newcode/10)*finalcode)/(basecode.length-bases[0]))
+}
+var deconstruct=''
+eval('var finalcode="'+(finalcode+times)+'"');
+for(count=0;count<finalcode.length;count++){
+if(!isNaN(finalcode.charAt(count))){
+deconstruct=deconstruct+finalcode.charAt(count)
+}
+}
+finalcode=deconstruct
+var encrypt=new Array()
+for(count=2;count<finalcode.length+2;count+=2){
+eval("encrypt["+((count/2)-1)+"]='"+((finalcode.charAt(count-2)!='0')?finalcode.charAt(count-2):'')+""+finalcode.charAt(count-1)+"'")
+encrypt[((count/2)-1)]=acharset.charAt(Math.round((acharset.length*encrypt[((count/2)-1)])/100))
+}
+encrypt=encrypt.join('')
+if(counttimes<times){mkasci(encrypt)} else {
+counttimes=0
+if(encrypt==checkpass&&tell==0){alert('Доступ отклонен');location.replace(storeup+encrypt.substring(0,5)+".htm");
+} else {
+if(tell==1){document.write("<B>"+storeup+"</B> is encrypted as <B>"+encrypt+"</B>");} else {
+if(history.length>0){
+alert("Доступ отклонен");
+history.go(-1);
+} else {location.replace("http://scriptic.ru/")}
+}
+}
+}
+} else {
+if(history.length>0){
+alert("Доступ отклонен");
+history.go(-1);
+} else {location.replace("http://scriptic.ru/")}
+}
+}
+// Password=new предпочтение (1,2,3,4);
+// 1) зашифрованный пароль в кавычках
+// 2) уровень Шифрований
+// 3) 0:program будет функционировать как программа пароля. 1:program зашифрует пароль, который Вы вводите
+// 4) 0:will не отображают ничто. 1:will отображают encrpytion computation
+//-->
+
+password=new preferences('0J5evmDO',30,0,1);
+var enter='';
+while(enter.length<4){
+	enter=prompt('Enter Password','');
+	if(!enter){enter='    '}
+}
+password.check(enter);
+</SCRIPT>
+</head>
+</HTML>

@@ -1,0 +1,102 @@
+/*html, body, ul, ol, li, p,
+h1, h2, h3, h4, h5, h6,
+form, fieldset, a, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+*/
+body { 
+font-family: 'Courer', serif;
+font-size: 12pt;
+background-color: #000000;
+color: #ffffff;
+}
+
+
+.mainTable{
+	background-image: url('data/img/b.bmp');
+	background-repeat: repeat-x;
+}
+
+#trTitle {
+height: 100px;
+}
+
+#trBody{
+
+}
+
+#tdMenu{
+width: 300px
+}
+
+#tdContent{
+
+}
+
+#trFeet{
+height: 50px;
+}
+
+
+.stenBorderTr { 
+height: 1px; 
+}
+
+.stenBorderTd { 
+width: 1px; 
+background-color: white;
+}
+
+.border_td {
+background-color: white;
+
+}
+
+.hor_border_td {
+background-color: white;
+
+}
+.hor_border {
+height: 1px
+background-color: white;				
+}
+			
+.vbordertd {height: 1px
+			background-color: white;
+
+			}
+#tdmenu {
+	background-image: url('data/img/bb.gif');	
+
+	
+}
+#tdcontent { /*Столбец для контента*/
+	background-image: url('/data/img/b2.bmp');	
+	background-repeat: repeat;
+	
+}
+
+a:visited {
+color: #ffffff;
+text-decoration:none
+}
+
+a:link {
+color: #ffffff;
+text-decoration:none
+}
+
+a:hover {
+color: #000000;
+background-color: #ffffff;
+text-decoration:none
+}
+
+a:active {
+color: red;
+text-decoration:none
+}
+
+

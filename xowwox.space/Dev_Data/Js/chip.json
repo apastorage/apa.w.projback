@@ -1,0 +1,35 @@
+{
+	"metadata": {
+		"version": 4.3,
+		"type": "Object",
+		"generator": "ObjectExporter"
+	},
+	"geometries": [
+		{
+			"uuid": "19CAC130-EE8F-452F-80F7-C5F204BB1F2F",
+			"type": "TorusGeometry",
+			"radius": 100,
+			"tube": 40,
+			"radialSegments": 8,
+			"tubularSegments": 6,
+			"arc": 6.283185307179586
+		}],
+	"materials": [
+		{
+			"uuid": "E00008BC-B7C1-4573-B402-3530F5BFA2EA",
+			"type": "MeshPhongMaterial",
+			"color": 16777215,
+			"ambient": 16777215,
+			"emissive": 0,
+			"specular": 1118481,
+			"shininess": 30
+		}],
+	"object": {
+		"uuid": "D3A92B03-26DD-437B-A091-A479572E4C7D",
+		"type": "Mesh",
+		"name": "Torus 2",
+		"geometry": "19CAC130-EE8F-452F-80F7-C5F204BB1F2F",
+		"material": "E00008BC-B7C1-4573-B402-3530F5BFA2EA",
+		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+	}
+}

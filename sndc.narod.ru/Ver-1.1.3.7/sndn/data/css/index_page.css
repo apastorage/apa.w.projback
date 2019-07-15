@@ -1,0 +1,75 @@
+/*html, body, ul, ol, li, p,
+h1, h2, h3, h4, h5, h6,
+form, fieldset, a, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+*/
+#index-body { 
+font-family: 'Courer', serif;
+font-size: 12pt;
+background-color: #000000;
+color: #afeeee;
+background-image: url('../img/bgimgmn.bmp');
+background-repeat: repeat;
+}
+
+#mainTable {
+	border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	height: 90%;
+	width: 	100%;
+	background-image: url('../img/bgimgmn.bmp');
+	background-repeat: repeat;
+}
+
+a:visited {
+	color: #7df9ff;
+	text-decoration:none
+}
+
+a:link {
+	color: #7df9ff;
+	text-decoration:none
+}
+
+a:hover {
+	color: #ffffff;
+	background-color: #00cccc;
+	background-image: url('../img/bgimglk.bmp');
+	background-repeat: repeat;
+	text-decoration:none
+}
+
+.horSep {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 4%;
+	width: 	100%;
+}
+
+.verSep {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 5%;
+	width: 	6%;
+}
+
+.verCont	{
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 5%;
+	width: 	22%;
+
+}
+
+.horCont	{
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 28%;
+	width: 	22%;
+
+}
+

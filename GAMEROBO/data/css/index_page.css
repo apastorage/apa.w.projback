@@ -1,0 +1,61 @@
+/*html, body, ul, ol, li, p,
+h1, h2, h3, h4, h5, h6,
+form, fieldset, a, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+*/
+#index-body { 
+font-family: 'Courer', serif;
+font-size: 12pt;
+background-color: #000000;
+color: #afeeee;
+background-image: url('../img/bgimgmn.bmp');
+background-repeat: repeat;
+}
+
+#mainTable {
+	border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	height: 100%;
+	width: 	100%;
+	background-image: url('../img/bgimgmn.bmp');
+	background-repeat: repeat;
+}
+
+#horSep {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 5%;
+	width: 	5%;
+}
+
+#verSep {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 5%;
+	width: 	30%;
+}
+
+#header {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 60%;
+	width: 	50%;
+}
+
+#info {
+	/*border-style: double;*/
+	border-width: 4px 4px 4px 4px;
+	height: 60%;
+	width: 	50%;
+}
+
+	/*border-style: double;*/
+	border-style: double;
+	border-width: 4px 4px 4px 4px;
+	height: 60%;
+	width: 	50%;
+}

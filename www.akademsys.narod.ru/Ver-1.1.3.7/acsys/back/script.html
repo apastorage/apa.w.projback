@@ -1,0 +1,185 @@
+<html>
+<head>
+	<title> Total Commander </title>
+	<link rel="stylesheet" type="text/css" href="data/css/style.css">
+</head>
+<body ID="contentPage">
+<h2>FShare.vbs</h2>
+<a href="data/distr/script.zip"><font color="#ffffff">Скачать</font></a>
+<br>
+<br>
+Код скрипта:<br><br>
+<br>
+Dim UserName	'Имя временной директории, создаваемой пользователем для заливки данных<br>
+Dim RandNick 	'Переменная для хранения Randomnoсозданного UserNick'а .<br>
+Dim NickName	'Имя временной директории, создаваемой пользователем для заливки данных<br><br>
+
+Dim Source 		'Источник копирования<br>
+Dim Destination 'Путь для установки скрипта<br><br>
+
+Dim Path		'Путь указывающий на файлообменник<br>
+Dim DownPath    'Путь для слива данных указывающий на файлообменник<br>
+Dim NickPath	'Путь указывающий на файлообменник, включая временную папку для заливки данных<br><br>
+
+Dim Reply<br><br>
+
+Dim FSO        	'Основанный на объектах инструмент для работы с папками и файлами<br>
+Dim WshNetwork	<br>
+Dim WshShell <br><br>
+
+
+Reply = MsgBox("Вас приветствует мастер установки группы скриптов FShare. Данный мастер поможет вам монтировать в систему три скрипта для работы с папкой файлообменника. При нажатии на кнопку [OK] - вы сошлашаетесь с тем, что вся ответственность за использование скрипта (и порождённых им объектов) ложиться непосредственно на вас. Если вы не совсем уверены в том, нужно ли вам это - просмотрите исходный код данного скрипта, чтобы проследить выполняемые им манипуляции. Если совсем не уверены - жмите кнопку [Cancel]. ", vbOkCancel + vbExclamation, "Welcome to SkyNET_Setup_Wizard")<br>
+If Reply = vbOK Then<br><br>
+
+Set FSO = CreateObject("Scripting.FileSystemObject") 'Подключаем FileSystemObject <br>
+Set WshNetwork = WScript.CreateObject("WScript.Network")<br>
+Set WshShell = CreateObject("Wscript.Shell")<br><br>
+
+'UserName = InputBox("Введите название своего профиля","SkyNet_Agent",WshNetwork.UserName)<br>
+                                                                                         'Включаем генератор случайных чисел. <br>
+NickName = InputBox("Введите свой NickName, для размещения данных на файлообменнике","SkyNet_Agent",WshNetwork.UserName)<br><br>
+
+
+Path =  InputBox("Укажите путь до файлообменника","SkyNET_Setup_Wizard","C:\ADSF\")  'Директория-файлообменник<br>
+DownPath = Path & "*"<br>
+NickPath = Path & NickName<br><br>
+
+'////////////////<br>
+'Создаём скрипты<br>
+'////////////////<br><br>
+
+Set upFile = FSO.CreateTextFile("1)_UploadFiles.vbs") 	 'Получаем файл, и его дискриптор <br>
+Set doFile = FSO.CreateTextFile("2)_DownloadFiles.vbs") 'Получаем файл, и его дискриптор <br>
+Set clFile = FSO.CreateTextFile("3)_ClearFShare.vbs") 'Получаем файл, и его дискриптор <br>
+'//////////////////////////<br>
+'Наполняем скрипты начинкой<br>
+'//////////////////////////<br><br>
+
+'Создаваемый скрипт будет заливать данные в каталог-файлообменник<br>
+upfile.WriteLine("'***************************************************************************************************'")<br>
+upfile.WriteLine("'File: 1)_UploadFiles.vbs (Visual_basic_script_edition)")<br>
+upfile.WriteLine("'Author: SkyNET Corp. [All Rights Reserved] ")<br>
+upfile.WriteLine("'Данный скрипт позволяет заливать данные в каталог-файлообменник")<br>
+upfile.WriteLine("'***************************************************************************************************'")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("On Error Resume Next 				'Долбить бронебойными операторами, не взирая на потери....")	<br>
+upfile.WriteLine("Dim FSO								'Основанный на объектах инструмент для работы с папками и файлами")<br>
+upfile.WriteLine("Dim i 								'Счётчик")<br>
+upfile.WriteLine("Dim Source     						'Имя отправляемой информации")<br>
+upfile.WriteLine("Dim FShare    						'Путь указывающий на файлообменник")<br>
+upfile.WriteLine("Dim NickFolder 						'Имя временной директории, создаваемой на файлообменнике")<br>
+upfile.WriteLine("Dim Destination 					'Путь назначения для заливки данных, включая имя временной директории")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("Destination = "& chr(34) & NickPath & chr(34) & " 			'Директория назначения для копирования")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("Set FSO = CreateObject _")<br>
+upfile.WriteLine("(" & chr(34) & "Scripting.FileSystemObject" & chr(34) & ") 		'Наделяем переменную силой творить чудеса с папками и файлами")<br>
+upfile.WriteLine("Set ArgObj = WScript.Arguments		'Коллекция переданных аргументов [файлов и папок]")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("FSO.DeleteFolder (Destination)		'Чистим файлообменник от предыдущих заливок")<br>
+upfile.WriteLine("FSO.CreateFolder (Destination)		'Создаём директорию для заливки данных")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("Destination = Destination & " & chr(34) &"\"& chr(34) & " 	'Указываем путь для заливки данных")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("For i = 0 to ArgObj.Count - 1 		'Цикл вывода всех проиндексиванных аргументов [файлов и папок]")<br>
+upfile.WriteLine("Source = ArgObj.Item(i)				'Указываем источник заливки")<br>
+upfile.WriteLine("FSO.CopyFile Source, Destination    'Копируем файлы")<br>
+upfile.WriteLine("FSO.CopyFolder Source, Destination 	'Копируем каталоги")<br>
+upfile.WriteLine("Next								'Крутим цикл")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("Set FSO = Nothing					'Прекращаем ассоциации с объектами")<br>
+upfile.WriteLine("")<br>
+upfile.WriteLine("Wscript.quit						'Terminate....")<br>
+upfile.Close <br>
+<br>
+'Создаваемый скрипт будет сливать данные с каталога-файлообменника<br>
+dofile.WriteLine("'***************************************************************************************************'")<br>
+dofile.WriteLine("'File: 2)_DownloadFiles.vbs (Visual_basic_script_edition)")<br>
+dofile.WriteLine("'Author: SkyNET Corp. [All Rights Reserved] ")<br>
+dofile.WriteLine("'Данный скрипт позволяет сливать данные с каталога-файлообменника")<br>
+dofile.WriteLine("'***************************************************************************************************'")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("On Error Resume Next 				'Долбить бронебойными операторами, не взирая на потери....")	<br>
+dofile.WriteLine("Dim FSO								'Основанный на объектах инструмент для работы с папками и файлами")<br>
+dofile.WriteLine("Dim i 								'Счётчик")<br>
+dofile.WriteLine("Dim Source     						'Имя отправляемой информации")<br>
+dofile.WriteLine("Dim FShare    						'Путь указывающий на файлообменник")<br>
+dofile.WriteLine("Dim NickFolder 						'Имя временной директории, создаваемой на файлообменнике")<br>
+dofile.WriteLine("Dim Destination 					'Путь назначения для заливки данных, включая имя временной директории")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("Source = "& chr(34) & Path & "*" & chr(34) & " 			'Источник слива данных")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("Set FSO = CreateObject _")<br>
+dofile.WriteLine("(" & chr(34) & "Scripting.FileSystemObject" & chr(34) & ") 		'Наделяем переменную силой творить чудеса с папками и файлами")<br>
+dofile.WriteLine("Set ArgObj = WScript.Arguments		'Коллекция переданных аргументов [файлов и папок]")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("For i = 0 to ArgObj.Count - 1 		'Цикл вывода всех проиндексиванных аргументов [файлов и папок]")<br>
+dofile.WriteLine("Destination = ArgObj.Item(i)				'Указываем источник заливки")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("Destination = Destination & " & chr(34) &"\"& chr(34) & " 	'Указываем цель для слива данных")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("FSO.CopyFile Source, Destination    'Копируем файлы")<br>
+dofile.WriteLine("FSO.CopyFolder Source, Destination 	'Копируем каталоги")<br>
+dofile.WriteLine("Next								'Крутим цикл")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("Set FSO = Nothing					'Прекращаем ассоциации с объектами")<br>
+dofile.WriteLine("")<br>
+dofile.WriteLine("Wscript.quit						'Terminate....")<br>
+dofile.Close<br>
+<br>
+'Создаваемый скрипт будет чистить каталог-файлообменник<br>
+clfile.WriteLine("'***************************************************************************************************'")<br>
+clfile.WriteLine("'File: 3)_ClearFShare.vbs (Visual_basic_script_edition)")<br>
+clfile.WriteLine("'Author: SkyNET Corp. [All Rights Reserved] ")<br>
+clfile.WriteLine("'Данный скрипт чистит каталог-файлообменник")<br>
+clfile.WriteLine("'***************************************************************************************************'")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("On Error Resume Next 				'Долбить бронебойными операторами, не взирая на потери....")<br>	
+clfile.WriteLine("Dim FSO								'Основанный на объектах инструмент для работы с папками и файлами")<br>
+clfile.WriteLine("Dim i 								'Счётчик")<br>
+clfile.WriteLine("Dim Source     						'Имя отправляемой информации")<br>
+clfile.WriteLine("Dim FShare    						'Путь указывающий на файлообменник")<br>
+clfile.WriteLine("Dim NickFolder 						'Имя временной директории, создаваемой на файлообменнике")<br>
+clfile.WriteLine("Dim Destination 					'Путь назначения для заливки данных, включая имя временной директории")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("Destination = "& chr(34) & NickPath & chr(34) & " 			'Директория назначения для копирования")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("Set FSO = CreateObject _")<br>
+clfile.WriteLine("(" & chr(34) & "Scripting.FileSystemObject" & chr(34) & ") 		'Наделяем переменную силой творить чудеса с папками и файлами")<br>
+clfile.WriteLine("Set ArgObj = WScript.Arguments		'Коллекция переданных аргументов [файлов и папок]")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("FSO.DeleteFolder (Destination)		'Чистим файлообменник от предыдущих заливок")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("Set FSO = Nothing					'Прекращаем ассоциации с объектами")<br>
+clfile.WriteLine("")<br>
+clfile.WriteLine("Wscript.quit						'Terminate....")<br>
+clfile.Close <br>
+ <br>
+'///////////////////////////////<br>
+'Устанавливаем скрипты в систему<br>
+'///////////////////////////////<br>
+<br>
+Destination = "C:\Documents and Settings\" & WshNetwork.UserName & "\SendTo\"  'Директория назначения для установки скрипта <br>
+Source = "1)_UploadFiles.vbs"<br>
+FSO.CopyFile Source, Destination <br>
+Source = "2)_DownloadFiles.vbs"<br>
+FSO.CopyFile Source, Destination <br>
+Source = "3)_ClearFShare.vbs"<br>
+FSO.CopyFile Source, Destination <br>
+<br>
+msgBox "Установка скриптов произведена успешно", 0,"SkyNET_Setup_Wizard"<br>
+
+<br>
+<br>
+
+Set FSO = Nothing					'Прекращаем ассоциации с объектами<br>
+Wscript.quit						'Terminate....<br>
+<br>
+End if<br>
+
+
+<!--#include virtual="/.narodsys/metrika_counter.html"-->
+
+<!--#include virtual="/.narodsys/direct.html"-->
+</body>
+</html>
